@@ -20,5 +20,3 @@ class Operation(db.Base):
 
     def __str__(self):
         return f'Operation: {self.id}, {self.type_operation}, {self.description}, {self.amount}'
-
-#prueba
