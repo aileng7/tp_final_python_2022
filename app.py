@@ -6,6 +6,11 @@ from models import Operation
 app = Flask(__name__)
 
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({'message': '---  REGISTRO DE OPERACIONES  ---'})
+
+
 @app.route('/operations', methods=['POST'])
 def inform_operations():
     date = request.json['date']
@@ -49,7 +54,7 @@ def consult_operations_type(type_operation):
 
 
 @app.route('/operations/<id>', methods=['PUT'])
-def update_task(id):
+def update_operations(id):
     operation = Operation.query.get(id)
     date = request.json['date']
     type_operation = request.json['type_operation']
@@ -65,7 +70,7 @@ def update_task(id):
 
 
 @app.route('/operations/<id>', methods=['DELETE'])
-def delete_operation(id):
+def delete_operations(id):
     operation = Operation.query.get(id)
     db.session.delete(operation)
     db.session.commit()
