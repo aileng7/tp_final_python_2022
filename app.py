@@ -64,5 +64,13 @@ def update_task(id):
     return jsonify(operation)
 
 
+@app.route('/operations/<id>', methods=['DELETE'])
+def delete_operation(id):
+    operation = Operation.query.get(id)
+    db.session.delete(operation)
+    db.session.commit()
+    return jsonify(operation)
+
+
 if __name__ == "__main__":
     app.run()
