@@ -38,8 +38,14 @@ def consult_operations_date(date):
 
 @app.route('/operations/<type_operation>', methods=['GET'])
 def consult_operations_type(type_operation):
-    operation = Operation.query.get(type_operation)
-    return jsonify(operation)
+    if type_operation == "Ingreso":
+        operation = Operation.query.filter_by(type_operation='Ingreso')
+        return jsonify(operation)
+    if type_operation == "Egreso":
+        operation = Operation.query.filter_by(type_operation='Egreso')
+        return jsonify(operation)
+    else:
+        print('Ingrese un tipo de operación correcto: Ingreso o Egreso')
 
 
 @app.route('/operations/<id>', methods=['PUT'])
